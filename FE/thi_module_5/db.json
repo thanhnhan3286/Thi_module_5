@@ -1,0 +1,86 @@
+{
+  "baiHat": [
+    {
+      "id": 2,
+      "ten": "Khó Vẽ Nụ Cười",
+      "caSi": "Đạt G",
+      "nhacSi": "Đạt G",
+      "thoiGianPhat": "04:00",
+      "soLuotThich": 20,
+      "trangThai": {
+        "id": 2,
+        "ten": "Công khai"
+      }
+    },
+    {
+      "ten": "See you again",
+      "caSi": "Wiz Khailifa",
+      "nhacSi": "Wiz Khailifa",
+      "thoiGianPhat": "03:02",
+      "soLuotThich": 0,
+      "trangThai": {
+        "id": 2,
+        "ten": "Công khai"
+      },
+      "id": 3
+    },
+    {
+      "ten": "Khó",
+      "caSi": "Nhân",
+      "nhacSi": "Nhân",
+      "thoiGianPhat": "03:55",
+      "soLuotThich": 0,
+      "trangThai": {
+        "id": 2,
+        "ten": "Công khai"
+      },
+      "id": 4
+    },
+    {
+      "ten": "See you again",
+      "caSi": "Wiz Khailifa",
+      "nhacSi": "Wiz Khailifa",
+      "thoiGianPhat": "03:55",
+      "soLuotThich": 0,
+      "trangThai": {
+        "id": 2,
+        "ten": "Công khai"
+      },
+      "id": 5
+    },
+    {
+      "ten": "See you again",
+      "caSi": "Wiz Khailifa",
+      "nhacSi": "Wiz Khailifa",
+      "thoiGianPhat": "03:55",
+      "soLuotThich": 0,
+      "trangThai": {
+        "id": 2,
+        "ten": "Công khai"
+      },
+      "id": 6
+    },
+    {
+      "ten": "See you again",
+      "caSi": "11111111111111111111111111111",
+      "nhacSi": "11111111111111111111111111111",
+      "thoiGianPhat": "22:99",
+      "soLuotThich": 0,
+      "trangThai": {
+        "id": 2,
+        "ten": "Công khai"
+      },
+      "id": 7
+    }
+  ],
+  "trangThai": [
+    {
+      "id": 1,
+      "ten": "Lưu trữ"
+    },
+    {
+      "id": 2,
+      "ten": "Công khai"
+    }
+  ]
+}
