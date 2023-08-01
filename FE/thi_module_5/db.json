@@ -1,86 +1,62 @@
 {
-  "baiHat": [
+  "song": [
     {
-      "id": 2,
-      "ten": "Khó Vẽ Nụ Cười",
-      "caSi": "Đạt G",
-      "nhacSi": "Đạt G",
-      "thoiGianPhat": "04:00",
-      "soLuotThich": 20,
-      "trangThai": {
-        "id": 2,
-        "ten": "Công khai"
+      "id": 1,
+      "name": "Khó Vẽ Nụ Cười",
+      "singer": "Đạt G",
+      "composer": "Đạt G",
+      "durations": "04:00",
+      "likes": 20,
+      "status": {
+        "id": 1,
+        "name": "Lưu trữ"
       }
     },
     {
-      "ten": "See you again",
-      "caSi": "Wiz Khailifa",
-      "nhacSi": "Wiz Khailifa",
-      "thoiGianPhat": "03:02",
-      "soLuotThich": 0,
-      "trangThai": {
+      "id": 2,
+      "name": "Khó Vẽ Nụ Cười",
+      "singer": "Đạt G",
+      "composer": "Đạt G",
+      "durations": "04:00",
+      "likes": 20,
+      "status": {
         "id": 2,
-        "ten": "Công khai"
-      },
-      "id": 3
+        "name": "Công khai"
+      }
     },
     {
-      "ten": "Khó",
-      "caSi": "Nhân",
-      "nhacSi": "Nhân",
-      "thoiGianPhat": "03:55",
-      "soLuotThich": 0,
-      "trangThai": {
-        "id": 2,
-        "ten": "Công khai"
-      },
-      "id": 4
+      "id": 3,
+      "name": "Khó Vẽ Nụ Cười",
+      "singer": "Đạt G",
+      "composer": "Đạt G",
+      "durations": "04:00",
+      "likes": 20,
+      "status": {
+        "id": 1,
+        "name": "Lưu trữ"
+      }
     },
     {
-      "ten": "See you again",
-      "caSi": "Wiz Khailifa",
-      "nhacSi": "Wiz Khailifa",
-      "thoiGianPhat": "03:55",
-      "soLuotThich": 0,
-      "trangThai": {
-        "id": 2,
-        "ten": "Công khai"
-      },
-      "id": 5
-    },
-    {
-      "ten": "See you again",
-      "caSi": "Wiz Khailifa",
-      "nhacSi": "Wiz Khailifa",
-      "thoiGianPhat": "03:55",
-      "soLuotThich": 0,
-      "trangThai": {
-        "id": 2,
-        "ten": "Công khai"
-      },
-      "id": 6
-    },
-    {
-      "ten": "See you again",
-      "caSi": "11111111111111111111111111111",
-      "nhacSi": "11111111111111111111111111111",
-      "thoiGianPhat": "22:99",
-      "soLuotThich": 0,
-      "trangThai": {
-        "id": 2,
-        "ten": "Công khai"
-      },
-      "id": 7
+      "id": 4,
+      "name": "Khó Vẽ Nụ Cười",
+      "singer": "Đạt G",
+      "composer": "Đạt G",
+      "durations": "04:00",
+      "likes": 20,
+      "status": {
+        "id": 1,
+        "name": "Lưu trữ"
+      }
     }
   ],
-  "trangThai": [
+  "status": [
     {
       "id": 1,
-      "ten": "Lưu trữ"
+      "name": "Lưu trữ"
     },
     {
       "id": 2,
-      "ten": "Công khai"
+      "name": "Công khai"
     }
   ]
 }

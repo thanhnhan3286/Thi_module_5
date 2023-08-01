@@ -1,38 +1,40 @@
 import React, {useEffect, useState} from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import * as spotifyService from "../service/SpotifyService";
+import * as songService from "../service/SongService";
 import Swal from "sweetalert2";
 import {Link} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
 
-export function SpotifyList() {
-    const [baiHat, setBaiHat] = useState([]);
-    const [baiHatHienThi, setBaiHatHienThi] = useState('');
-    const getBaiHat = async () => {
-        const res = await spotifyService.findAll();
-        setBaiHat(res);
+export function ListSong() {
+    const [songs, setSongs] = useState([]);
+    const [songPlay, setSongPlay] = useState('');
+    const [names, setNames] = useState('')
+
+    const getSong = async (names) => {
+        const res = await songService.findAll(names);
+        setSongs(res.content);
     };
-    const getBaiHatHienThi = async (id) => {
-        setBaiHatHienThi(await spotifyService.findBaiHatById(id));
+    const getSongPlay = async (id) => {
+        setSongPlay(await songService.findSongById(id));
     }
     useEffect(() => {
-        getBaiHat().then(r => null);
-    }, [])
-    const setTrangThai1 = async (values) => {
-        const res = await spotifyService.findTrangThai(2);
+        getSong(names).then(r => null);
+    }, [names])
+    const setStatus1 = async (values) => {
+        const res = await songService.findStatus(2);
         console.log(res);
-        await spotifyService.saveBaiHat({
+        await songService.saveSong({
             ...values,
-            trangThai: await spotifyService.findTrangThai(2)
+            status: await songService.findStatus(2)
         });
-        await getBaiHat();
+        await getSong();
 
     }
-    const setTrangThai = async (id) => {
-        const res = await spotifyService.findBaiHatById(id)
-        console.log(res.trangThai.id);
-        if (res.trangThai.id === 1) {
-            setTrangThai1(res).then(r => null);
+    const setStatus = async (id) => {
+        const res = await songService.findSongById(id)
+        console.log(res.status.id);
+        if (res.status.id === 1) {
+            setStatus1(res).then(r => null);
             await Swal.fire({
                 title: "Thông báo",
                 text: "Đã chuyển trạng thái từ LƯU TRỮ sang CÔNG KHAI!!!",
@@ -47,7 +49,7 @@ export function SpotifyList() {
         }
     }
 
-    function thayDoiTrangThai(id, name) {
+    function changeStatus(id, name) {
         Swal.fire({
             title: 'XÁC NHẬN',
             text: "Bạn có muốn công khai bài hát " + name + " này không?",
@@ -59,14 +61,14 @@ export function SpotifyList() {
             confirmButtonText: 'CÓ'
         }).then((result) => {
             if (result.isConfirmed) {
-                setTrangThai(id).then(r => null);
+                setStatus(id).then(r => null);
             }
         })
     }
 
-    const searchByTen = async (values) => {
-        const res = await spotifyService.findBaiHatByTen(values);
-        setBaiHat(res);
+    const searchSongByName = async (values) => {
+        const res = await songService.findSongByName(values);
+        setSongs(res);
     }
     return (
         <>
@@ -75,8 +77,8 @@ export function SpotifyList() {
                     <div className="row">
                         <div className="col-3"/>
                         <div className="col-9">
-                            <h1>{baiHatHienThi.ten}</h1>
-                            <h5>{baiHatHienThi.caSi}</h5>
+                            <h1>{songPlay.name}</h1>
+                            <h5>{songPlay.singer}</h5>
                         </div>
                     </div>
                 </div>
@@ -90,7 +92,7 @@ export function SpotifyList() {
                 </div>
             </nav>
             <div className="row room-grid text-center bg-body-secondary" style={{margin: "0 5%"}}>
-                <h1 className="mt-3">Danh sách khách hàng</h1>
+                <h1 className="mt-3">Danh sách bài hát</h1>
                 <nav className="row right container mt-3 mb-3">
                     <div className="col-6"/>
                     <div className="col-6 ">
@@ -99,10 +101,10 @@ export function SpotifyList() {
                             <div className="col-9 d-flex">
                                 <Formik
                                     initialValues={{
-                                        ten: ''
+                                        name: ''
                                     }}
                                     onSubmit={async (values) => {
-                                        await searchByTen(values);
+                                        await searchSongByName(values);
                                     }}
                                 >
                                     <Form className="d-flex">
@@ -112,7 +114,7 @@ export function SpotifyList() {
                                                 style={{marginLeft: "1%"}}>
                                             Tìm kiếm
                                         </button>
-                                        <button onClick={() => getBaiHat()} type="reset" className="btn btn-secondary"
+                                        <button onClick={() => getSong()} type="reset" className="btn btn-secondary"
                                                 style={{marginLeft: "1%"}}>
                                             Hủy tìm kiếm
                                         </button>
@@ -142,24 +144,22 @@ export function SpotifyList() {
                                         </thead>
                                         <tbody>
                                         {
-                                            baiHat.map((bai, index) => (
+                                            songs.map((song, index) => (
                                                 <tr key={index}>
                                                     <th>{index + 1}</th>
                                                     <th>
-                                                        <button className="btn" onClick={()=>getBaiHatHienThi(bai.id)}>
-                                                            {bai.ten}
-                                                        </button>
+                                                        {song.names}
                                                     </th>
-                                                    <th>{bai.caSi}</th>
-                                                    <th>{bai.thoiGianPhat}</th>
-                                                    <th>{bai.soLuotThich}</th>
-                                                    <th>{bai.trangThai.ten}</th>
+                                                    <th>{song.singer}</th>
+                                                    <th>{song.durations}</th>
+                                                    <th>{song.likes}</th>
+                                                    <th>{song.status.names}</th>
                                                     <th>
                                                         <button type="button" className=" btn-del btn btn-danger"
                                                                 fdprocessedid="tkcp7c"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#exampleModal"
-                                                                onClick={() => thayDoiTrangThai(`${bai.id}`, `${bai.ten}`)}
+                                                                onClick={() => changeStatus(`${song.id}`, `${song.name}`)}
                                                         >Công khai
                                                         </button>
                                                     </th>
