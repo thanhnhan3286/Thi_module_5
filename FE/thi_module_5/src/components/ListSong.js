@@ -9,17 +9,18 @@ export function ListSong() {
     const [songs, setSongs] = useState([]);
     const [songPlay, setSongPlay] = useState('');
     const [names, setNames] = useState('')
+    const limit = 5;
 
-    const getSong = async (names) => {
-        const res = await songService.findAll(names);
+    const getSong = async () => {
+        const res = await songService.findAll(0,limit);
         setSongs(res.content);
     };
     const getSongPlay = async (id) => {
         setSongPlay(await songService.findSongById(id));
     }
     useEffect(() => {
-        getSong(names).then(r => null);
-    }, [names])
+        getSong().then(r => null);
+    }, [])
     const setStatus1 = async (values) => {
         const res = await songService.findStatus(2);
         console.log(res);
@@ -104,7 +105,7 @@ export function ListSong() {
                                         name: ''
                                     }}
                                     onSubmit={async (values) => {
-                                        await searchSongByName(values);
+                                        await setNames(values.name);
                                     }}
                                 >
                                     <Form className="d-flex">

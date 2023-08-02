@@ -45,9 +45,9 @@ export async function findSongById(id) {
 }
 
 
-export const findAll = async (names) => {
+export const findAll = async (page,limit) => {
     try {
-        return (await axios.get(`http://localhost:8080/api/?names=${names}`)).data;
+        return (await axios.get(`http://localhost:8080/api/${page}/${limit}`)).data;
     } catch (e) {
         console.log(e)
     }
