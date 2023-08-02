@@ -27,7 +27,7 @@ public class SongController {
 //        Page<Song> songPage = iSongService.geAllSong(pageable, names);
 //        return new ResponseEntity<>(songPage, HttpStatus.OK);
 //    }
-    @GetMapping("/{page}/{limit}")
+    @GetMapping("/song/{page}/{limit}")
     public ResponseEntity<Page<Song>> getAllSongs(@PathVariable Integer page, @PathVariable Integer limit) {
         Pageable pageable = PageRequest.of(page, limit);
         if (iSongService.getAllSong(pageable).isEmpty()) {
@@ -36,7 +36,7 @@ public class SongController {
             return new ResponseEntity<>(iSongService.getAllSong(pageable), HttpStatus.OK);
         }
     }
-    @GetMapping("/{id}")
+    @GetMapping("/song/{id}")
     public ResponseEntity<?> findSongById(@PathVariable Integer id) {
         Song song = iSongService.getSongById(id);
         if (song == null) {
@@ -44,7 +44,7 @@ public class SongController {
         }
         return new ResponseEntity<>(song, HttpStatus.OK);
     }
-    @GetMapping("/search/{name}")
+    @GetMapping("/song/search/{name}")
     public ResponseEntity<?>searchSongByName(@PathVariable String name){
         if (name==null){
             name="";
@@ -56,13 +56,13 @@ public class SongController {
         return  new ResponseEntity<>(songList,HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping("/song")
     public ResponseEntity<?> createNewSong(@RequestBody Song song) {
         iSongService.createNewSong(song);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/song/{id}")
     public ResponseEntity<?> deleteSongById(@PathVariable Integer id) {
         if (iSongService.getSongById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -71,7 +71,7 @@ public class SongController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/song/{id}")
     public ResponseEntity<?> updateSong(@RequestBody Song song) {
         iSongService.editSong(song.getId(), song.getNames(), song.getSinger(), song.getComposer(), song.getDurations(), song.getLikes(), song.getStatus().getId());
         return new ResponseEntity<>(HttpStatus.OK);

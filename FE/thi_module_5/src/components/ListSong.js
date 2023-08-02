@@ -5,22 +5,36 @@ import Swal from "sweetalert2";
 import {Link} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
 
+
 export function ListSong() {
     const [songs, setSongs] = useState([]);
     const [songPlay, setSongPlay] = useState('');
-    const [names, setNames] = useState('')
+    const [names, setNames] = useState('');
+    const [page, setPage] = useState(0);
     const limit = 5;
 
-    const getSong = async () => {
-        const res = await songService.findAll(0,limit);
+    // const nextPage = async () => {
+    //     const data = await songService.findAll(page,limit);
+    //     if (page < data.totalPages - 1) {
+    //         setPage(page + 1);
+    //     }
+    // };
+    // const previousPage = () => {
+    //     if (page > 0) {
+    //         setPage(page - 1);
+    //     }
+    // };
+    const getSong = async (page) => {
+        const res = await songService.findAll(page,limit);
+        // console.log(res.totalPages);
         setSongs(res.content);
     };
     const getSongPlay = async (id) => {
         setSongPlay(await songService.findSongById(id));
     }
     useEffect(() => {
-        getSong().then(r => null);
-    }, [])
+        getSong(page).then(r => null);
+    }, [page])
     const setStatus1 = async (values) => {
         const res = await songService.findStatus(2);
         console.log(res);
