@@ -36,6 +36,7 @@ public class SongController {
             return new ResponseEntity<>(iSongService.getAllSong(pageable), HttpStatus.OK);
         }
     }
+
     @GetMapping("/song/{id}")
     public ResponseEntity<?> findSongById(@PathVariable Integer id) {
         Song song = iSongService.getSongById(id);
@@ -44,16 +45,14 @@ public class SongController {
         }
         return new ResponseEntity<>(song, HttpStatus.OK);
     }
-    @GetMapping("/song/search/{name}")
-    public ResponseEntity<?>searchSongByName(@PathVariable String name){
-        if (name==null){
-            name="";
-        }
+
+    @GetMapping("/song/{name}")
+    public ResponseEntity<?> searchSongByName(@PathVariable String name) {
         List<Song> songList = iSongService.searchSongByName(name);
-        if (songList==null){
+        if (songList == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return  new ResponseEntity<>(songList,HttpStatus.OK);
+        return new ResponseEntity<>(songList, HttpStatus.OK);
     }
 
     @PostMapping("/song")

@@ -2,8 +2,8 @@ import axios from "axios";
 
 export async function findSongByName(values) {
     try {
-        return (await axios.get(`http://localhost:8080/song?name_like=${values.name}`)).data;
-    }catch (e) {
+        return (await axios.get(`http://localhost:8080/api/song/${values.name}`)).data;
+    } catch (e) {
         console.log(e);
     }
 }
@@ -11,8 +11,8 @@ export async function findSongByName(values) {
 
 export async function createSong(param) {
     try {
-        await axios.post(`http://localhost:8080/song`,param);
-    }catch (e) {
+        await axios.post(`http://localhost:8080/api/song`, param);
+    } catch (e) {
         console.log(e);
     }
 }
@@ -38,14 +38,14 @@ export async function findStatus(id) {
 
 export async function findSongById(id) {
     try {
-        return (await axios.get(`http://localhost:8080/api/` + id)).data;
+        return (await axios.get(`http://localhost:8080/api/song/` + id)).data;
     } catch (e) {
         console.log(e);
     }
 }
 
 
-export const findAll = async (page,limit) => {
+export const findAll = async (page, limit) => {
     try {
         return (await axios.get(`http://localhost:8080/api/song/${page}/${limit}`)).data;
     } catch (e) {
