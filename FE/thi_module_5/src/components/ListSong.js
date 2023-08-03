@@ -13,21 +13,21 @@ export function ListSong() {
     const [page, setPage] = useState(0);
     const limit = 5;
 
-    // const nextPage = async () => {
-    //     const data = await songService.findAll(page,limit);
-    //     if (page < data.totalPages - 1) {
-    //         setPage(page + 1);
-    //     }
-    // };
-    // const previousPage = () => {
-    //     if (page > 0) {
-    //         setPage(page - 1);
-    //     }
-    // };
+    const nextPage = async () => {
+        const res = await songService.findAll(page,limit);
+        if (page < res.data.totalPages - 1) {
+            setPage(page + 1);
+        }
+    };
+    const previousPage = () => {
+        if (page > 0) {
+            setPage(page - 1);
+        }
+    };
     const getSong = async (page) => {
         const res = await songService.findAll(page,limit);
-        // console.log(res.totalPages);
-        setSongs(res.content);
+        console.log(res.data.totalPages);
+        setSongs(res.data.content);
     };
     const getSongPlay = async (id) => {
         setSongPlay(await songService.findSongById(id));
