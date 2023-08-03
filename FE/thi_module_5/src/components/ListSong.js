@@ -14,7 +14,7 @@ export function ListSong() {
     const limit = 5;
 
     const nextPage = async () => {
-        const res = await songService.findAll(page,limit);
+        const res = await songService.findAll(page, limit);
         if (page < res.data.totalPages - 1) {
             setPage(page + 1);
         }
@@ -25,7 +25,7 @@ export function ListSong() {
         }
     };
     const getSong = async (page) => {
-        const res = await songService.findAll(page,limit);
+        const res = await songService.findAll(page, limit);
         console.log(res.data.totalPages);
         setSongs(res.data.content);
     };
@@ -144,7 +144,7 @@ export function ListSong() {
                          aria-labelledby="orders-all-tab">
                         <div className="app-card app-card-orders-table shadow-sm mb-5">
                             <div className="app-card-body">
-                                <div className="table-responsive">
+                                <div className="table-responsive mb-3">
                                     <table className="table app-table-hover mb-0 text-left">
                                         <thead>
                                         <tr>
@@ -184,6 +184,19 @@ export function ListSong() {
                                         </tbody>
                                     </table>
                                 </div>
+                                <button className="btn btn-outline-secondary"
+                                        onClick={() => {
+                                            previousPage();
+                                        }}>
+                                    Trước
+                                </button>
+                                <span className="btn btn-outline-secondary">{page + 1}</span>
+                                <button className="btn btn-outline-secondary"
+                                        onClick={() => {
+                                            nextPage().then(r => null);
+                                        }}>
+                                    Sau
+                                </button>
                             </div>
                         </div>
                     </div>
