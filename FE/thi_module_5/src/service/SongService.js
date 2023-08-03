@@ -11,7 +11,7 @@ export async function findSongByName(values) {
 
 export async function createSong(param) {
     try {
-        await axios.post(`http://localhost:8080/api/song`, param);
+        await axios.post(`http://localhost:8080/api/song/`, param);
     } catch (e) {
         console.log(e);
     }

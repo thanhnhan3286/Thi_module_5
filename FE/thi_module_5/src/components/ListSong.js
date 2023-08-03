@@ -11,7 +11,7 @@ export function ListSong() {
     const [songPlay, setSongPlay] = useState('');
     const [names, setNames] = useState('');
     const [page, setPage] = useState(0);
-    const limit = 5;
+    const limit = 8;
 
     const nextPage = async () => {
         const res = await songService.findAll(page, limit);
@@ -162,9 +162,7 @@ export function ListSong() {
                                             songs.map((song, index) => (
                                                 <tr key={index}>
                                                     <th>{index + 1}</th>
-                                                    <th>
-                                                        {song.names}
-                                                    </th>
+                                                    <th>{song.names}</th>
                                                     <th>{song.singer}</th>
                                                     <th>{song.durations}</th>
                                                     <th>{song.likes}</th>
